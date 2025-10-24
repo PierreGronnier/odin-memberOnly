@@ -1,0 +1,31 @@
+{
+  "name": "odin-memberonly",
+  "version": "1.0.0",
+  "description": "member only app for the odin project course",
+  "homepage": "https://github.com/PierreGronnier/odin-memberOnly#readme",
+  "bugs": {
+    "url": "https://github.com/PierreGronnier/odin-memberOnly/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PierreGronnier/odin-memberOnly.git"
+  },
+  "license": "ISC",
+  "author": "Pierre Gronnier",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "initdb": "node db/initdb.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.2",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
+    "pg": "^8.16.3"
+  }
+}

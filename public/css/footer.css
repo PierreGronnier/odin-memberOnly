@@ -1,0 +1,23 @@
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px 20px;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+  margin-top: auto;
+}
+
+.footer-logo {
+  height: 30px;
+  transition: var(--transition);
+  filter: brightness(0) saturate(100%) invert(77%) sepia(94%) saturate(743%)
+    hue-rotate(1deg) brightness(1.2) contrast(1);
+}
+
+.footer-logo:hover {
+  transform: scale(1.1);
+}
