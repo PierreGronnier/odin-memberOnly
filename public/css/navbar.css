@@ -21,7 +21,7 @@
 
 .navbar-logo:hover {
   transform: scale(1.1);
-  filter: drop-shadow(0 0 6px var(--highlight-color));
+  filter: drop-shadow(0 0 6px var(--secondary-color));
 }
 
 .navbar-menu {

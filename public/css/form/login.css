@@ -1,0 +1,97 @@
+.login-container {
+  background: var(--primary-color);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h1 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+}
+
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: 4px;
+  background: rgba(51, 51, 51, 0.5);
+  color: var(--text-color);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: var(--highlight-color);
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: var(--transition);
+}
+
+button[type="submit"]:hover {
+  background: var(--highlight-color);
+  transform: translateY(-2px);
+}
+
+.divider {
+  border: 0;
+  border-top: 1px solid rgba(255, 215, 0, 0.1);
+  margin: 1.5rem 0;
+}
+
+.redirect-text {
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--muted-color);
+}
+
+.redirect-text a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.redirect-text a:hover {
+  color: var(--highlight-color);
+}
+
+.form-errors {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+  color: #ff7676;
+  font-weight: 500;
+}
+
+.form-errors li {
+  margin-bottom: 0.3rem;
+}
