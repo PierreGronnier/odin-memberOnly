@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/club.css" />
+  </head>
+  <body>
+    <div class="club-container">
+      <h1>Join the Club 🦸</h1>
+      <p>To become a member, answer the following question correctly:</p>
+      <p>Who is the best superhero of all time?</p>
+
+      <% if (error) { %>
+      <p class="error"><%= error %></p>
+      <% } %> <% if (success) { %>
+      <p class="success"><%= success %></p>
+      <% } %>
+
+      <form action="/join-club" method="POST">
+        <div class="superhero-options">
+          <label class="superhero-option">
+            <input type="radio" name="answer" value="superman" required />
+            <div class="superhero-image">
+              <img src="/img/superman.jpg" alt="Superman" />
+            </div>
+            <span class="superhero-name">Superman</span>
+          </label>
+          <label class="superhero-option">
+            <input type="radio" name="answer" value="batman" required />
+            <div class="superhero-image">
+              <img src="/img/batman.jpg" alt="Batman" />
+            </div>
+            <span class="superhero-name">Batman</span>
+          </label>
+          <label class="superhero-option">
+            <input type="radio" name="answer" value="spiderman" required />
+            <div class="superhero-image">
+              <img src="/img/spiderman.jpeg" alt="Spiderman" />
+            </div>
+            <span class="superhero-name">Spiderman</span>
+          </label>
+          <label class="superhero-option">
+            <input type="radio" name="answer" value="wonder-woman" required />
+            <div class="superhero-image">
+              <img src="/img/wonderwoman.jpg" alt="Wonder Woman" />
+            </div>
+            <span class="superhero-name">Wonder Woman</span>
+          </label>
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,18 +1,13 @@
-.container {
+.signup-container {
   background: var(--primary-color);
   border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: var(--border-radius);
   padding: 2rem;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 }
 
-h1 {
+.signup-container h1 {
   text-align: center;
   color: var(--secondary-color);
   margin-bottom: 1.5rem;
@@ -46,7 +41,7 @@ input[type="password"]:focus {
   border-color: var(--highlight-color);
 }
 
-button[type="submit"] {
+.signup-container button[type="submit"] {
   width: 100%;
   padding: 0.75rem;
   background: var(--secondary-color);
@@ -58,7 +53,7 @@ button[type="submit"] {
   margin-top: 1rem;
 }
 
-button[type="submit"]:hover {
+.signup-container button[type="submit"]:hover {
   background: var(--highlight-color);
 }
 

@@ -23,8 +23,17 @@ async function createUser(first_name, last_name, email, password_hash) {
   );
 }
 
+// Donner le statut de membre
+async function updateMembershipStatus(userId, isMember) {
+  await pool.query("UPDATE users SET membership = $1 WHERE id = $2", [
+    isMember,
+    userId,
+  ]);
+}
+
 module.exports = {
   findUserByEmail,
   findUserById,
   createUser,
+  updateMembershipStatus,
 };

@@ -1,0 +1,130 @@
+.club-container {
+  background: var(--primary-color);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.club-container h1 {
+  text-align: center;
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.club-container p {
+  text-align: center;
+  color: var(--text-color);
+  margin-bottom: 2rem;
+}
+
+.superhero-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.superhero-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.superhero-option input[type="radio"] {
+  display: none;
+}
+
+.superhero-image {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  margin-bottom: 0.5rem;
+}
+
+.superhero-option input[type="radio"]:checked + .superhero-image {
+  border-color: var(--highlight-color);
+}
+
+.superhero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.superhero-name {
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.club-container button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border: none;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.club-container button[type="submit"]:hover {
+  background: var(--highlight-color);
+}
+
+.error {
+  color: #ff6b6b;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  border-left: 4px solid #ff6b6b;
+}
+
+.success {
+  color: #51cf66;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  background: rgba(81, 207, 102, 0.1);
+  padding: 0.75rem;
+  border-radius: 4px;
+  border-left: 4px solid #51cf66;
+}
+
+@media (max-width: 768px) {
+  .club-container {
+    padding: 1.5rem;
+  }
+
+  .superhero-options {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .superhero-image {
+    height: 200px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .club-container {
+    padding: 1rem;
+  }
+
+  .superhero-image {
+    height: 180px;
+    max-width: 250px;
+  }
+}

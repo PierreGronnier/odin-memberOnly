@@ -4,8 +4,14 @@
       <img src="/img/icon.png" alt="Logo" class="navbar-logo" />
     </a>
     <ul class="navbar-menu">
+      <% if (!user) { %>
       <li><a href="/sign-up">Sign Up</a></li>
       <li><a href="/login">Login</a></li>
+      <% } else { %> <% if (!user.membership) { %>
+      <li><a href="/join-club">Join the Club</a></li>
+      <% } %>
+      <li><a href="/logout">Logout</a></li>
+      <% } %>
     </ul>
   </div>
 </nav>

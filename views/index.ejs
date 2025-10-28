@@ -5,8 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <a href="/">Test</a>
-    <button>Click me</button>
+    <% if (user) { %> <% if (user.membership) { %>
+    <h2>
+      Welcome member <%= user.first_name %> to our exclusive Hot Takes clubhouse
+    </h2>
+    <% } else { %>
+    <h2>Welcome <%= user.first_name %> to our exclusive Hot Takes clubhouse</h2>
+    <% } %> <% } %>
   </body>
 </html>
