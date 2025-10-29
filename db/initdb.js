@@ -17,7 +17,6 @@ CREATE TABLE IF NOT EXISTS users (
 -- Création de la table des messages
 CREATE TABLE IF NOT EXISTS messages (
   id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   created_at TIMESTAMP DEFAULT NOW(),
   updated_at TIMESTAMP DEFAULT NOW(),

@@ -1,4 +1,5 @@
 const db = require("../db/queries/users");
+const dbMsg = require("../db/queries/msg");
 
 exports.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
@@ -10,7 +11,13 @@ exports.isAuthenticated = (req, res, next) => {
 // -------------------- GET / --------------------
 exports.indexGet = async (req, res) => {
   try {
-    res.render("index", { title: "Hot takes" });
+    const messages = await dbMsg.getAllMessages();
+
+    res.render("index", {
+      title: "Hot takes",
+      user: req.user,
+      messages,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");

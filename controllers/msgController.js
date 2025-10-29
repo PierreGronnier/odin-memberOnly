@@ -1,4 +1,5 @@
 const db = require("../db/queries/msg");
+const { check, validationResult } = require("express-validator");
 
 exports.isMember = async (req, res, next) => {
   try {
@@ -17,21 +18,35 @@ exports.isMember = async (req, res, next) => {
   }
 };
 
-// -------------------- GET / --------------------
-exports.newmsgGet = async (req, res) => {
-  try {
-    res.render("newmsg", { title: "New message" });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
-  }
+// GET /newmsg
+exports.newmsgGet = (req, res) => {
+  res.render("newmsg", { title: "New Hot Take", errors: [], oldInput: {} });
 };
 
-// -------------------- GET /join-club --------------------
-exports.newmsgPost = async (req, res) => {
-  try {
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Server error");
-  }
-};
+// POST /newmsg
+exports.newmsgPost = [
+  check("content").trim().notEmpty().withMessage("Hot take cannot be empty"),
+
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.render("newmsg", {
+        title: "New Hot Take",
+        errors: errors.array(),
+        oldInput: req.body,
+      });
+    }
+
+    try {
+      const { content } = req.body;
+      const author_id = req.user.id;
+
+      await db.createMessage(content, author_id);
+
+      res.redirect("/");
+    } catch (err) {
+      console.error(err);
+      next(err);
+    }
+  },
+];

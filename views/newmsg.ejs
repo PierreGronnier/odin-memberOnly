@@ -3,9 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/form/newmsg.css" />
     <title><%= title %></title>
   </head>
   <body>
-    <h1>New message page</h1>
+    <div class="newmsg-container">
+      <h1>New Hot takes</h1>
+
+      <% if (errors.length > 0) { %>
+      <ul class="form-errors">
+        <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+        <% }) %>
+      </ul>
+      <% } %>
+
+      <form action="/newmsg" method="POST">
+        <div class="form-group">
+          <label for="content">Content</label>
+          <textarea id="content" name="content" rows="6" required>
+<%= oldInput.content || '' %></textarea
+          >
+        </div>
+        <hr class="divider" />
+        <button type="submit">Post Message</button>
+      </form>
+    </div>
   </body>
 </html>

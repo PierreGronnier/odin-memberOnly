@@ -1,0 +1,37 @@
+.messages-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-card {
+  background: var(--primary-color);
+  border: 1px solid rgba(255, 215, 0, 0.1);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+}
+
+.message-content {
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.message-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--muted-color);
+  justify-content: flex-end;
+}
+
+.message-likes {
+  color: var(--accent-color);
+}
+
+.message-author {
+  font-weight: 500;
+  color: var(--secondary-color);
+}
