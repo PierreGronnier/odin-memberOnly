@@ -20,7 +20,12 @@ exports.indexGet = async (req, res) => {
 // -------------------- GET /join-club --------------------
 exports.clubGet = async (req, res) => {
   try {
-    res.render("club", { title: "Join the club", error: null, success: null });
+    res.render("club", {
+      title: "Join the club",
+      error: null,
+      success: null,
+      redirect: null,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
@@ -37,14 +42,16 @@ exports.clubPost = async (req, res) => {
         title: "Join the Club",
         error: null,
         success:
-          "Correct! Batman is the GOAT. You have good taste, welcome to the Hot Takes club, member !",
+          "Correct! Batman is the GOAT. You have good taste, welcome to the Hot Takes club, member!",
+        redirect: true,
       });
     } else {
       res.render("club", {
         title: "Join the Club",
         error:
-          "Wrong answer! Your opinion is wrong but you can try again if your taste evolve !",
+          "Wrong answer! Your opinion is wrong but you can try again if your taste evolves!",
         success: null,
+        redirect: false,
       });
     }
   } catch (err) {

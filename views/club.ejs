@@ -53,4 +53,12 @@
       </form>
     </div>
   </body>
+
+  <% if (redirect) { %>
+  <script>
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 5000);
+  </script>
+  <% } %>
 </html>

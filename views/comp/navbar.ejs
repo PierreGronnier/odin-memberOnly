@@ -9,6 +9,8 @@
       <li><a href="/login">Login</a></li>
       <% } else { %> <% if (!user.membership) { %>
       <li><a href="/join-club">Join the Club</a></li>
+      <% } else { %>
+      <li><a href="/newmsg">New message</a></li>
       <% } %>
       <li><a href="/logout">Logout</a></li>
       <% } %>

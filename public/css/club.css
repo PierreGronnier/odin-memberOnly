@@ -2,29 +2,31 @@
   background: var(--primary-color);
   border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: var(--border-radius);
-  padding: 2rem;
+  padding: 1.5rem;
   width: 100%;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
 .club-container h1 {
   text-align: center;
   color: var(--secondary-color);
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.6rem;
 }
 
 .club-container p {
   text-align: center;
   color: var(--text-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
 }
 
 .superhero-options {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .superhero-option {
@@ -40,16 +42,18 @@
 
 .superhero-image {
   width: 100%;
-  max-width: 400px;
-  height: 250px;
+  max-width: 320px;
+  height: 200px;
   border-radius: 4px;
   overflow: hidden;
   border: 3px solid transparent;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.4rem;
+  transition: var(--transition);
 }
 
 .superhero-option input[type="radio"]:checked + .superhero-image {
   border-color: var(--highlight-color);
+  transform: scale(1.03);
 }
 
 .superhero-image img {
@@ -60,61 +64,71 @@
 
 .superhero-name {
   color: var(--text-color);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
 }
 
 .club-container button[type="submit"] {
   width: 100%;
-  padding: 0.75rem;
+  padding: 0.9rem;
   background: var(--secondary-color);
   color: var(--primary-color);
   border: none;
   border-radius: var(--border-radius);
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  margin-top: 1rem;
+  margin-top: 0.75rem;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  transition: var(--transition);
 }
 
 .club-container button[type="submit"]:hover {
   background: var(--highlight-color);
+  transform: translateY(-2px);
 }
 
 .error {
   color: #ff6b6b;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 600;
   background: rgba(255, 107, 107, 0.1);
-  padding: 0.75rem;
+  padding: 0.6rem;
   border-radius: 4px;
   border-left: 4px solid #ff6b6b;
+  font-size: 0.95rem;
 }
 
 .success {
   color: #51cf66;
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-weight: 600;
   background: rgba(81, 207, 102, 0.1);
-  padding: 0.75rem;
+  padding: 0.6rem;
   border-radius: 4px;
   border-left: 4px solid #51cf66;
+  font-size: 0.95rem;
 }
 
 @media (max-width: 768px) {
   .club-container {
-    padding: 1.5rem;
+    padding: 1.25rem;
   }
 
   .superhero-options {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
 
   .superhero-image {
-    height: 200px;
-    max-width: 300px;
+    height: 180px;
+    max-width: 280px;
+  }
+
+  .club-container h1 {
+    font-size: 1.4rem;
   }
 }
 
@@ -124,7 +138,7 @@
   }
 
   .superhero-image {
-    height: 180px;
-    max-width: 250px;
+    height: 160px;
+    max-width: 240px;
   }
 }
