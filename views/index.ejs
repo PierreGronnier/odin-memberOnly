@@ -7,29 +7,54 @@
     <title><%= title %></title>
   </head>
   <body>
-    <% if (user) { %> <% if (user.membership) { %>
-    <h2>
-      Welcome member <%= user.first_name %> to our exclusive Hot Takes clubhouse
-    </h2>
-    <% } else { %>
-    <h2>Welcome <%= user.first_name %> to our exclusive Hot Takes clubhouse</h2>
-    <% } %> <% } %>
-
-    <div class="messages-container">
-      <% messages.forEach(msg => { %>
-      <div class="message-card">
-        <p class="message-content"><%= msg.content %></p>
-        <div class="message-meta">
-          <span class="message-date">
-            <%= new Date(msg.created_at).toLocaleString() %>
-          </span>
-          <span class="message-likes">❤️ <%= msg.likes %></span>
-          <% if (user && user.membership) { %>
-          <span class="message-author">— <%= msg.first_name %></span>
-          <% } %>
-        </div>
+    <div class="index-container">
+      <% if (!user) { %>
+      <div class="welcome-message">
+        <h2>Welcome to our exclusive Hot Takes clubhouse</h2>
+        <p>
+          Please <a href="/login">login</a> or
+          <a href="/register">create an account</a> to join the club.
+        </p>
       </div>
-      <% }) %>
+      <% } else if (!user.membership) { %>
+      <div class="welcome-message">
+        <h2>
+          Welcome <%= user.first_name %> to our exclusive Hot Takes clubhouse
+        </h2>
+        <p>
+          Click <a href="/join-club">Join the Club</a> to become a member and
+          post messages.
+        </p>
+      </div>
+      <% } else { %>
+      <div class="welcome-message">
+        <h2>
+          Welcome member <%= user.first_name %> to our exclusive Hot Takes
+          clubhouse
+        </h2>
+        <p>You can post new messages in the club.</p>
+      </div>
+      <% } %>
+
+      <div class="messages-container">
+        <% messages.forEach(msg => { %>
+        <div class="message-card">
+          <div class="message-header">
+            <span class="message-author">
+              <% if (user && user.membership) { %> <%= msg.first_name %> <% }
+              else { %> Anonymous <% } %>
+            </span>
+            <span class="message-date">
+              <%= new Date(msg.created_at).toLocaleString() %>
+            </span>
+          </div>
+          <p class="message-content"><%= msg.content %></p>
+          <div class="message-footer">
+            <span class="message-likes">❤️ <%= msg.likes %></span>
+          </div>
+        </div>
+        <% }) %>
+      </div>
     </div>
   </body>
 </html>

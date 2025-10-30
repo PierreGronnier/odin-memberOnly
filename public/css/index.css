@@ -1,37 +1,90 @@
+.index-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.welcome-message {
+  background: var(--primary-color);
+  border: 1px solid rgba(255, 215, 0, 0.2);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.welcome-message h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+}
+
+.welcome-message p {
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-message a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.welcome-message a:hover {
+  color: var(--highlight-color);
+  text-decoration: underline;
+}
+
 .messages-container {
-  max-width: 700px;
-  margin: 2rem auto;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .message-card {
   background: var(--primary-color);
   border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: var(--border-radius);
-  padding: 1rem;
+  padding: 1.5rem;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
-.message-content {
-  font-size: 1rem;
-  color: var(--text-color);
-  margin-bottom: 0.5rem;
-}
-
-.message-meta {
+.message-header {
   display: flex;
-  gap: 1rem;
-  font-size: 0.85rem;
-  color: var(--muted-color);
-  justify-content: flex-end;
-}
-
-.message-likes {
-  color: var(--accent-color);
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 215, 0, 0.1);
 }
 
 .message-author {
   font-weight: 500;
   color: var(--secondary-color);
+}
+
+.message-date {
+  font-size: 0.85rem;
+  color: var(--muted-color);
+}
+
+.message-content {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.message-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.message-likes {
+  color: var(--accent-color);
+  font-size: 0.9rem;
 }
