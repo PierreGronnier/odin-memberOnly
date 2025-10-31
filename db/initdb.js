@@ -24,6 +24,15 @@ CREATE TABLE IF NOT EXISTS messages (
   author_id INT REFERENCES users(id) ON DELETE CASCADE
 );
 
+-- Création de la table des likes
+CREATE TABLE IF NOT EXISTS likes (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id) ON DELETE CASCADE,
+  message_id INT REFERENCES messages(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT NOW(),
+  UNIQUE(user_id, message_id)
+);
+
 `;
 
 async function main() {

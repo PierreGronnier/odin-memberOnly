@@ -1,4 +1,5 @@
 const db = require("../db/queries/msg");
+const dbUsers = require("../db/queries/users");
 const { check, validationResult } = require("express-validator");
 
 exports.isMember = async (req, res, next) => {
@@ -7,7 +8,7 @@ exports.isMember = async (req, res, next) => {
       return res.redirect("/login?error=Youmustloginfirst");
     }
     const userId = req.user.id;
-    const isMember = await db.isUserMember(userId);
+    const isMember = await dbUsers.isUserMember(userId);
     if (!isMember) {
       return res.redirect("/join-club?error=YoumustbeMember");
     }

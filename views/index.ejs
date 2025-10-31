@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/css/index.css" />
     <title><%= title %></title>
   </head>
-  <body>
+  <body class="index">
     <div class="index-container">
       <% if (!user) { %>
       <div class="welcome-message">
@@ -50,11 +50,54 @@
           </div>
           <p class="message-content"><%= msg.content %></p>
           <div class="message-footer">
-            <span class="message-likes">❤️ <%= msg.likes %></span>
+            <% if (user && user.membership) { %>
+            <span
+              class="message-likes clickable <%= msg.user_liked ? 'liked' : '' %>"
+              onclick="toggleLike(<%= msg.id %>, this)"
+            >
+              👍 <span class="like-count"><%= msg.likes %></span>
+            </span>
+            <% } else { %>
+            <span class="message-likes">
+              👍 <span class="like-count"><%= msg.likes %></span>
+            </span>
+            <% } %>
           </div>
         </div>
         <% }) %>
       </div>
     </div>
+
+    <script>
+      async function toggleLike(messageId, element) {
+        try {
+          const response = await fetch(`/like/${messageId}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const result = await response.json();
+
+          if (!result.success) {
+            alert(result.error);
+            return;
+          }
+
+          const likeCount = element.querySelector(".like-count");
+          likeCount.textContent = result.likes;
+
+          if (result.action === "liked") {
+            element.classList.add("liked");
+          } else {
+            element.classList.remove("liked");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error processing like");
+        }
+      }
+    </script>
   </body>
 </html>

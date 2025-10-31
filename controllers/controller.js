@@ -11,7 +11,8 @@ exports.isAuthenticated = (req, res, next) => {
 // -------------------- GET / --------------------
 exports.indexGet = async (req, res) => {
   try {
-    const messages = await dbMsg.getAllMessages();
+    const userId = req.user ? req.user.id : null;
+    const messages = await dbMsg.getAllMessages(userId);
 
     res.render("index", {
       title: "Hot takes",
@@ -64,5 +65,33 @@ exports.clubPost = async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).send("Server error");
+  }
+};
+
+// -------------------- POST /like/:id --------------------
+exports.toggleLike = async (req, res) => {
+  try {
+    const messageId = req.params.id;
+    const userId = req.user.id;
+
+    if (!req.user.membership) {
+      return res.status(403).json({
+        success: false,
+        error: "You must be a member to like messages",
+      });
+    }
+
+    const result = await dbMsg.toggleLike(userId, messageId);
+    res.json({
+      success: true,
+      action: result.action,
+      likes: result.likes,
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      error: "Server error",
+    });
   }
 };

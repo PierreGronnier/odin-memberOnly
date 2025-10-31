@@ -20,6 +20,9 @@ router.post("/newmsg", isAuthenticated, isMember, msgController.newmsgPost);
 
 router.get("/join-club", isAuthenticated, controller.clubGet);
 router.post("/join-club", isAuthenticated, controller.clubPost);
+
+router.post("/like/:id", isAuthenticated, controller.toggleLike);
+
 router.get("/logout", isAuthenticated, (req, res, next) => {
   req.logout(function (err) {
     if (err) return next(err);

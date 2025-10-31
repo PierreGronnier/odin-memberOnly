@@ -4,6 +4,10 @@
   padding: 2rem;
 }
 
+body.index main {
+  padding: 0;
+}
+
 .welcome-message {
   background: var(--primary-color);
   border: 1px solid rgba(255, 215, 0, 0.2);
@@ -12,8 +16,6 @@
   text-align: center;
   margin-bottom: 2rem;
   box-shadow: var(--box-shadow);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
 }
 
 .welcome-message h2 {
@@ -48,9 +50,6 @@
   border: 1px solid rgba(255, 215, 0, 0.1);
   border-radius: var(--border-radius);
   padding: 1.5rem;
-  box-shadow: var(--box-shadow);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
 }
 
 .message-header {
@@ -87,4 +86,26 @@
 .message-likes {
   color: var(--accent-color);
   font-size: 0.9rem;
+}
+
+.message-likes.clickable {
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.message-likes.clickable:hover {
+  background: rgba(255, 215, 0, 0.1);
+  transform: scale(1.05);
+}
+
+.message-likes.liked {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+.message-footer {
+  display: flex;
+  justify-content: flex-end;
 }
