@@ -38,7 +38,7 @@
 
       <div class="messages-container">
         <% messages.forEach(msg => { %>
-        <div class="message-card">
+        <div class="message-card" id="message-<%= msg.id %>">
           <div class="message-header">
             <span class="message-author">
               <% if (user && user.membership) { %> <%= msg.first_name %> <% }
@@ -50,18 +50,28 @@
           </div>
           <p class="message-content"><%= msg.content %></p>
           <div class="message-footer">
-            <% if (user && user.membership) { %>
-            <span
-              class="message-likes clickable <%= msg.user_liked ? 'liked' : '' %>"
-              onclick="toggleLike(<%= msg.id %>, this)"
-            >
-              👍 <span class="like-count"><%= msg.likes %></span>
-            </span>
-            <% } else { %>
-            <span class="message-likes">
-              👍 <span class="like-count"><%= msg.likes %></span>
-            </span>
-            <% } %>
+            <div class="message-actions">
+              <% if (user && user.membership) { %>
+              <span
+                class="message-likes clickable <%= msg.user_liked ? 'liked' : '' %>"
+                onclick="toggleLike(<%= msg.id %>, this)"
+              >
+                👍 <span class="like-count"><%= msg.likes %></span>
+              </span>
+              <% } else { %>
+              <span class="message-likes">
+                👍 <span class="like-count"><%= msg.likes %></span>
+              </span>
+              <% } %> <% if (user && user.is_admin) { %>
+              <button
+                class="delete-btn"
+                onclick="deleteMessage(<%= msg.id %>, this)"
+                title="Delete message"
+              >
+                🗑️
+              </button>
+              <% } %>
+            </div>
           </div>
         </div>
         <% }) %>
@@ -96,6 +106,42 @@
         } catch (error) {
           console.error("Error:", error);
           alert("Error processing like");
+        }
+      }
+
+      async function deleteMessage(messageId, element) {
+        if (
+          !confirm(
+            "Are you sure you want to delete this message? This action cannot be undone."
+          )
+        ) {
+          return;
+        }
+
+        try {
+          const response = await fetch(`/message/${messageId}`, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+
+          const result = await response.json();
+
+          if (!result.success) {
+            alert(result.error);
+            return;
+          }
+
+          const messageElement = document.getElementById(
+            `message-${messageId}`
+          );
+          if (messageElement) {
+            messageElement.remove();
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          alert("Error deleting message");
         }
       }
     </script>

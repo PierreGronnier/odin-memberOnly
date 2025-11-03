@@ -1,6 +1,6 @@
 const pool = require("../pool");
 
-// Créer un nouveau message (inchangé)
+// Créer un nouveau message
 async function createMessage(content, author_id) {
   await pool.query(
     `INSERT INTO messages (content, author_id, created_at, updated_at)
@@ -9,7 +9,7 @@ async function createMessage(content, author_id) {
   );
 }
 
-// Récupérer tous les messages avec le prénom de l'auteur (modifié pour inclure user_liked)
+// Récupérer tous les messages avec le prénom de l'auteur
 async function getAllMessages(userId = null) {
   let query = `
     SELECT 
@@ -97,8 +97,37 @@ async function getMessageLikes(messageId) {
   return result.rows[0]?.likes || 0;
 }
 
+// Récupérer un message par son ID
+async function getMessageById(messageId) {
+  const result = await pool.query("SELECT * FROM messages WHERE id = $1", [
+    messageId,
+  ]);
+  return result.rows[0];
+}
+
+// Supprimer un message
+async function deleteMessage(messageId) {
+  const client = await pool.connect();
+  try {
+    await client.query("BEGIN");
+
+    await client.query("DELETE FROM likes WHERE message_id = $1", [messageId]);
+
+    await client.query("DELETE FROM messages WHERE id = $1", [messageId]);
+
+    await client.query("COMMIT");
+  } catch (error) {
+    await client.query("ROLLBACK");
+    throw error;
+  } finally {
+    client.release();
+  }
+}
+
 module.exports = {
   createMessage,
   getAllMessages,
   toggleLike,
+  deleteMessage,
+  getMessageById,
 };

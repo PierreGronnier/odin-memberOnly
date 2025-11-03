@@ -51,3 +51,39 @@ exports.newmsgPost = [
     }
   },
 ];
+
+// DELETE /message/:id
+exports.deleteMessage = async (req, res) => {
+  try {
+    const messageId = req.params.id;
+
+    const isAdmin = await dbUsers.isUserAdmin(req.user.id);
+    if (!isAdmin) {
+      return res.status(403).json({
+        success: false,
+        error: "You must be an administrator to delete messages",
+      });
+    }
+
+    const messageCheck = await db.getMessageById(messageId);
+    if (!messageCheck) {
+      return res.status(404).json({
+        success: false,
+        error: "Message not found",
+      });
+    }
+
+    await db.deleteMessage(messageId);
+
+    res.json({
+      success: true,
+      message: "Message deleted successfully",
+    });
+  } catch (err) {
+    console.error("Error deleting message:", err);
+    res.status(500).json({
+      success: false,
+      error: "Server error while deleting message",
+    });
+  }
+};

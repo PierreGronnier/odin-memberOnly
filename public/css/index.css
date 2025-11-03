@@ -109,3 +109,28 @@ body.index main {
   display: flex;
   justify-content: flex-end;
 }
+
+.message-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.delete-btn {
+  background: transparent;
+  border: 1px solid #ff6b6b;
+  color: #ff6b6b;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+.delete-btn:hover {
+  background: #ff6b6b;
+  color: white;
+  transform: scale(1.05);
+}

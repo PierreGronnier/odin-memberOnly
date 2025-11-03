@@ -40,10 +40,28 @@ async function isUserMember(userId) {
   return result.rows[0]?.membership || false;
 }
 
+// Donner le statut d'admin
+async function updateAdminStatus(userId, isAdmin) {
+  await pool.query("UPDATE users SET is_admin = $1 WHERE id = $2", [
+    isAdmin,
+    userId,
+  ]);
+}
+
+// Savoir si un utilisateur est admin
+async function isUserAdmin(userId) {
+  const result = await pool.query("SELECT is_admin FROM users WHERE id = $1", [
+    userId,
+  ]);
+  return result.rows[0]?.is_admin || false;
+}
+
 module.exports = {
   isUserMember,
+  isUserAdmin,
   findUserByEmail,
   findUserById,
   createUser,
   updateMembershipStatus,
+  updateAdminStatus,
 };

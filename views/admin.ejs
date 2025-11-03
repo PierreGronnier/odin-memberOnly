@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/club.css" />
+  </head>
+  <body>
+    <div class="club-container">
+      <h1>Become an Administrator 🔧</h1>
+      <p>To become an administrator, you need the secret admin code.</p>
+      <p>
+        <em
+          >This power allows you to delete any message and moderate the
+          community.</em
+        >
+      </p>
+
+      <% if (error) { %>
+      <p class="error"><%= error %></p>
+      <% } %> <% if (success) { %>
+      <p class="success"><%= success %></p>
+      <% } %>
+
+      <form action="/admin" method="POST" class="admin-form">
+        <div class="form-group">
+          <label for="admin_code">Admin Code</label>
+          <input
+            type="password"
+            id="admin_code"
+            name="admin_code"
+            class="secret-input"
+            placeholder="Enter the secret code..."
+            required
+          />
+        </div>
+
+        <button type="submit">Become Admin</button>
+      </form>
+    </div>
+
+    <% if (redirect) { %>
+    <script>
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 4000);
+    </script>
+    <% } %>
+  </body>
+</html>

@@ -2,6 +2,7 @@ const { Router } = require("express");
 const controller = require("../controllers/controller");
 const authController = require("../controllers/authController");
 const msgController = require("../controllers/msgController");
+const adminController = require("../controllers/adminController");
 const { isAuthenticated } = require("../controllers/controller");
 const { isMember } = require("../controllers/msgController");
 
@@ -29,5 +30,9 @@ router.get("/logout", isAuthenticated, (req, res, next) => {
     res.redirect("/");
   });
 });
+
+router.get("/admin", isAuthenticated, adminController.adminGet);
+router.post("/admin", isAuthenticated, adminController.adminPost);
+router.delete("/message/:id", isAuthenticated, msgController.deleteMessage);
 
 module.exports = router;
