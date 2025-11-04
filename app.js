@@ -6,6 +6,7 @@ const session = require("express-session");
 const passport = require("passport");
 
 const Router = require("./routes/router");
+const initDB = require("./db/initdb");
 
 const initializePassport = require("./config/passport");
 initializePassport(passport);
@@ -42,7 +43,27 @@ app.use((req, res, next) => {
 app.use("/", Router);
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, (error) => {
-  if (error) throw error;
-  console.log(`Express app listening on port ${PORT}`);
-});
+
+async function startServer() {
+  try {
+    console.log("DB init...");
+
+    await initDB();
+    console.log("✅ Success DB init !");
+
+    app.listen(PORT, (error) => {
+      if (error) throw error;
+      console.log(`Express app listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Error init:", error);
+
+    console.log("Server start without DB...");
+    app.listen(PORT, (error) => {
+      if (error) throw error;
+      console.log(`Express app listening on port ${PORT} (without DB)`);
+    });
+  }
+}
+
+startServer();
