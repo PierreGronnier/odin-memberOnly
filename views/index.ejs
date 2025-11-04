@@ -45,7 +45,9 @@
               else { %> Anonymous <% } %>
             </span>
             <span class="message-date">
-              <%= new Date(msg.created_at).toLocaleString() %>
+              <%= new Date(msg.created_at).toLocaleDateString() %> | <%= new
+              Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit',
+              minute: '2-digit' }) %>
             </span>
           </div>
           <p class="message-content"><%= msg.content %></p>
@@ -56,11 +58,13 @@
                 class="message-likes clickable <%= msg.user_liked ? 'liked' : '' %>"
                 onclick="toggleLike(<%= msg.id %>, this)"
               >
-                👍 <span class="like-count"><%= msg.likes %></span>
+                <img src="/img/icon.png" alt="Logo like" class="like-logo" />
+                <span class="like-count"><%= msg.likes %></span>
               </span>
               <% } else { %>
               <span class="message-likes">
-                👍 <span class="like-count"><%= msg.likes %></span>
+                <img src="/img/icon.png" alt="Logo like" class="like-logo" />
+                <span class="like-count"><%= msg.likes %></span>
               </span>
               <% } %> <% if (user && user.is_admin) { %>
               <button

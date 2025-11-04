@@ -86,6 +86,7 @@ body.index main {
 .message-likes {
   color: var(--accent-color);
   font-size: 0.9rem;
+  align-items: center;
 }
 
 .message-likes.clickable {
@@ -115,6 +116,22 @@ body.index main {
   gap: 1rem;
   align-items: center;
   justify-content: flex-end;
+}
+
+.like-logo {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.like-count {
+  position: relative;
+  top: 3px;
+}
+
+.message-likes.clickable:hover .like-logo {
+  transform: scale(1.1);
 }
 
 .delete-btn {
